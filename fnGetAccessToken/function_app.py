@@ -67,26 +67,27 @@ def get_access_token_from_b64(client_id, tenant_id, pfx_b64, pfx_password):
     response = requests.post(token_url, headers=headers, data=body)
     print("Status Code:", response.status_code)
     print("Response Text:", response.text)
-    response_data = json.loads(response.text)
 
+    ## uncomment to test if the token is valide ##
+    # response_data = json.loads(response.text)
     # Extract the token
-    access_token = response_data["access_token"]
-    test_token(access_token=access_token)
+    # access_token = response_data["access_token"]
+    # test_token(access_token=access_token)
     response.raise_for_status()
     
     return response.json()["access_token"]
 
 
-def test_token(access_token:str):
+# def test_token(access_token:str):
     
-    headers = {
-        "Authorization": f"Bearer {access_token}"
-    }
+#     headers = {
+#         "Authorization": f"Bearer {access_token}"
+#     }
 
-    response = requests.get("https://graph.microsoft.com/v1.0/users", headers=headers)
+#     response = requests.get("https://graph.microsoft.com/v1.0/users", headers=headers)
 
-    print("Tess token Status Code:", response.status_code)
-    print("Test token Response:", response.json())
+#     print("Test token Status Code:", response.status_code)
+#     print("Test token Response:", response.json())
  
 
 
